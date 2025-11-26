@@ -1,8 +1,10 @@
 import time
 import RPi.GPIO as GPIO
 import io
-import cv2
 
+# 프레임을 임시 저장할 버퍼 개수를 1로 설정
+buffer_size = 1
+camera.set(cv2.CAP_PROP_BUFFERSIZE, buffer_size)
 # LED를 켜고 끄는 함수
 def controlLED(on_off): # led 번호의 핀에 on_off(0/1) 값 출력하는 함수
 	global ledred
@@ -36,19 +38,8 @@ def measure_distance():
 	pulse_end = time.time() # 초음파가 되돌아 온 시간 기록
 	pulse_duration = pulse_end - pulse_start # 경과 시간 계산
 	return pulse_duration*340*100/2 # 거리 계산하여 리턴(단위 cm)
-def capture():
-	for i in range(buffer_size+1): 
-		ret, frame = camera.read()
-		im_bytes = cv2.imencode('.jpg', frame)[1].tobytes() # 바이트 배열로 저장
-		cv2.imwrite('./data/picture.jpg', im_bytes)
 
-# 카메라 객체를 생성하고 촬영한 사진 크기를 640x480으로 설정
-camera = cv2.VideoCapture(0, cv2.CAP_V4L)
-camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
-# 프레임을 임시 저장할 버퍼 개수를 1로 설정
-buffer_size = 1
-camera.set(cv2.CAP_PROP_BUFFERSIZE, buffer_size)
+
 # 초음파 센서를 다루기 위한 전역 변수 선언 및 초기화
 trig = 20 # GPIO20
 echo = 16 # GPIO16
