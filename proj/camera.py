@@ -3,7 +3,7 @@ camera = None
 def init(camera_id = 0, width=640, height=480,buffer_size=1):
 	global camera
 	# 카메라 객체를 생성하고 촬영한 사진 크기를 640x480으로 설정
-	camera = cv2.VideoCapture(camera_id, cv2.CAP_V4L)
+	camera = cv2.VideoCapture(-1)
 	camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
 	camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 	# 프레임을 임시 저장할 버퍼 개수를 1로 설정
