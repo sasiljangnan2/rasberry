@@ -6,8 +6,11 @@ def controlLED(on_off): # led 번호의 핀에 on_off(0/1) 값 출력하는 함�
 	global ledred
 	GPIO.output(ledred, on_off)
 # pin에 연결된 LED에 value(0/1) 값을 출력하여 LED를 켜거나 끄는 함수
-def led_on():
+def ledred_on():
 	GPIO.output(ledred, 1)
+	GPIO.output(ledblue, 0)
+def ledblue_on():
+	GPIO.output(ledred, 0)
 	GPIO.output(ledblue, 1)
 def led_off():
 	GPIO.output(ledred, 0)
@@ -32,6 +35,7 @@ def measure_distance():
 	pulse_duration = pulse_end - pulse_start # 경과 시간 계산
 	return pulse_duration*340*100/2 # 거리 계산하여 리턴(단위 cm)
 
+
 # 초음파 센서를 다루기 위한 전역 변수 선언 및 초기화
 trig = 20 # GPIO20
 echo = 16 # GPIO16
@@ -45,3 +49,4 @@ ledred = 6 # GPIO6
 ledblue =13
 GPIO.setup(ledred, GPIO.OUT) # GPIO6 핀을 출력으로 지정
 GPIO.setup(ledblue, GPIO.OUT) # GPIO13 핀을 출력으로 지정
+

@@ -1,9 +1,8 @@
 import time
 import paho.mqtt.client as mqtt
-import RPi.GPIO as GPIO
 import circuit 
-
-
+red_on = 0
+blue_on = 0
 def on_connect(client, userdata, flag, rc, prop=None):
 	client.subscribe("led") # "led" 토픽으로 구독 신청
 
@@ -26,5 +25,17 @@ while True:
 	distance = circuit.measure_distance() # 초음파 센서로부터 거리 읽기
 	client.publish("ultrasonic", distance) # “ultrasonic” 토픽으로 거리 전송
 	time.sleep(1) # 1초 동안 잠자기
+	if distance < 20 : # 물체와의 거리가 10cm 이내이면
+		if (red_on == 0) :
+			circuit.ledred_on()
+			red_on = 1
+			blue_on = 0
+		elif (blue_on == 0):
+			circuit.ledblue_on()
+			red_on = 0
+			blue_on = 1
+
+	else:
+		circuit.led_off()
 client.loop_stop() # 메시지 루프를 실행하는 스레드 종료
 client.disconnect()
