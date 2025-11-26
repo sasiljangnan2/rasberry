@@ -1,5 +1,6 @@
 import time
 import RPi.GPIO as GPIO
+import io
 import cv2
 
 # LED를 켜고 끄는 함수
