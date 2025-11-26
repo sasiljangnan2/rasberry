@@ -45,7 +45,7 @@ try:
 				circuit.ledred_on()
 				red_on = 1
 				blue_on = 0
-			
+			elif (blue_on == 0):
 				circuit.ledblue_on()
 				red_on = 0
 				blue_on = 1
