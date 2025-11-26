@@ -40,7 +40,7 @@ try:
 		if distance < 20 : # 물체와의 거리가 10cm 이내이면
 			image = camera.take_picture(most_recent=True)
 			if image is not None:
-				cv2.imwrite('./cctv.jpg', image)
+				cv2.imwrite('./static/cctv.jpg', image)
 			if (red_on == 0) :
 				circuit.ledred_on()
 				red_on = 1
