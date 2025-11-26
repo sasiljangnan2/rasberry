@@ -12,9 +12,9 @@ def index():
 	return render_template('11-4.html')
 @app.route('/cctv')
 def cctv():
-    image = camera.take_picture(most_recent=True)
+    return render_template('11-4.html',fname='/data/cctv.jpg')
+    '''image = camera.take_picture(most_recent=True)
     if image is not None:
-        cv2.imwrite('/data/cctv.jpg', image)
-        return render_template('11-4.html',fname='/data/cctv.jpg')
+        cv2.imwrite('/data/cctv.jpg', image)'''
 if __name__ == "__main__":
 	app.run(host='0.0.0.0', port=8080, debug=True)
