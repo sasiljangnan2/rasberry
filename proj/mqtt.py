@@ -37,10 +37,10 @@ try:
 		time.sleep(1) # 1초 동안 잠자기
 		if distance < 20 : # 물체와의 거리가 10cm 이내이면
 			#image = camera.take_picture()
-			for i in range(buffer_size+1): 
-				ret, frame = camera.read()
+			#for i in range(buffer_size+1): 
+			'''	ret, frame = camera.read()
 			if ret is not None:
-				cv2.imwrite('./data/cctv.jpg', frame)
+				cv2.imwrite('./data/cctv.jpg', frame)'''
 			if (red_on == 0) :
 				circuit.ledred_on()
 				red_on = 1
@@ -48,7 +48,7 @@ try:
 			elif (blue_on == 0):
 				circuit.ledblue_on()
 				red_on = 0
-				blue_on = 1
+				blue_on = 1##
 		else:
 			circuit.led_off()
 except KeyboardInterrupt:
