@@ -1,6 +1,6 @@
 import cv2
 camera = None
-def init(camera_id = -1, width=640, height=480,buffer_size=1):
+def init(camera_id = 0, width=640, height=480,buffer_size=1):
 	global camera
 	# 카메라 객체를 생성하고 촬영한 사진 크기를 640x480으로 설정
 	camera = cv2.VideoCapture(camera_id, cv2.CAP_V4L)
