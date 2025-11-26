@@ -2,9 +2,7 @@ import time
 import RPi.GPIO as GPIO
 import io
 
-# 프레임을 임시 저장할 버퍼 개수를 1로 설정
-buffer_size = 1
-camera.set(cv2.CAP_PROP_BUFFERSIZE, buffer_size)
+
 # LED를 켜고 끄는 함수
 def controlLED(on_off): # led 번호의 핀에 on_off(0/1) 값 출력하는 함수
 	global ledred

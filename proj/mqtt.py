@@ -9,7 +9,9 @@ import cv2
 camera = cv2.VideoCapture(0, cv2.CAP_V4L)
 camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
 camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
-
+# 프레임을 임시 저장할 버퍼 개수를 1로 설정
+buffer_size = 1
+camera.set(cv2.CAP_PROP_BUFFERSIZE, buffer_size)
 def capture():
 	for i in range(buffer_size+1): 
 		ret, frame = camera.read()
