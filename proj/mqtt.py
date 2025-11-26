@@ -4,12 +4,14 @@ import circuit
 import RPi.GPIO as GPIO
 import cv2
 import camera
+'''
 camera = cv2.VideoCapture(0, cv2.CAP_V4L)
 camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
 camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 # 프레임을 임시 저장할 버퍼 개수를 1로 설정
 buffer_size = 1
-camera.set(cv2.CAP_PROP_BUFFERSIZE, buffer_size)
+camera.set(cv2.CAP_PROP_BUFFERSIZE, buffer_size)'''
+camera.init(width=640, height=480)
 red_on = 0
 blue_on = 0
 def on_connect(client, userdata, flag, rc, prop=None):
@@ -36,6 +38,9 @@ try:
 		client.publish("ultrasonic", distance) # “ultrasonic” 토픽으로 거리 전송
 		time.sleep(1) # 1초 동안 잠자기
 		if distance < 20 : # 물체와의 거리가 10cm 이내이면
+			image = camera.take_picture(most_recent=True)
+			if image is not None:
+				cv2.imwrite('./cctv.jpg', image)
 			if (red_on == 0) :
 				circuit.ledred_on()
 				red_on = 1
