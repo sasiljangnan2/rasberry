@@ -16,6 +16,7 @@ red_on = 0
 blue_on = 0
 def on_connect(client, userdata, flag, rc, prop=None):
 	client.subscribe("led") # "led" 토픽으로 구독 신청
+	client.sub
 
 def on_message(client, userdata, msg) :
 	on_off = int(msg.payload); # on_off는 0 또는 1의 정수
@@ -41,6 +42,8 @@ try:
 		client.publish("ultrasonic", distance) # “ultrasonic” 토픽으로 거리 전송
 		time.sleep(0.5) # 1초 동안 잠자기
 		if distance < 20 : # 물체와의 거리가 10cm 이내이면
+			im_bytes = cv2.imencode('.jpg', image)[1].tobytes() # 바이트 배열로 저장
+			client.publish("jpeg", im_bytes, qos = 0) # 이미지 전송
 			if (red_on == 0):
 				circuit.ledred_on()
 				red_on = 1
