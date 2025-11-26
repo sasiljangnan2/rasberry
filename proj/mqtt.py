@@ -2,8 +2,21 @@ import time
 import paho.mqtt.client as mqtt
 import circuit 
 import RPi.GPIO as GPIO
-import io
+
 import cv2
+
+# 카메라 객체를 생성하고 촬영한 사진 크기를 640x480으로 설정
+camera = cv2.VideoCapture(0, cv2.CAP_V4L)
+camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+
+def capture():
+	for i in range(buffer_size+1): 
+		ret, frame = camera.read()
+		im_bytes = cv2.imencode('.jpg', frame)[1].tobytes() # 바이트 배열로 저장
+		cv2.imwrite('./data/picture.jpg', im_bytes)
+
+
 red_on = 0
 blue_on = 0
 def on_connect(client, userdata, flag, rc, prop=None):
