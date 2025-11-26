@@ -39,7 +39,7 @@ try:
 			cv2.imwrite('./static/cctv.jpg', image)
 		distance = circuit.measure_distance() # 초음파 센서로부터 거리 읽기
 		client.publish("ultrasonic", distance) # “ultrasonic” 토픽으로 거리 전송
-		time.sleep(1) # 1초 동안 잠자기
+		time.sleep(0.5) # 1초 동안 잠자기
 		if distance < 20 : # 물체와의 거리가 10cm 이내이면
 			if (red_on == 0):
 				circuit.ledred_on()
