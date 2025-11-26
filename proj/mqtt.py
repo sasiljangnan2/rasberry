@@ -45,7 +45,7 @@ try:
 		client.publish("ultrasonic", distance) # “ultrasonic” 토픽으로 거리 전송
 		time.sleep(1) # 1초 동안 잠자기
 		if distance < 20 : # 물체와의 거리가 10cm 이내이면
-			circuit.camera()
+			camera()
 			if (red_on == 0) :
 				circuit.ledred_on()
 				red_on = 1
