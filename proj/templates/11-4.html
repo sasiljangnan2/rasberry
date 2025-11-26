@@ -39,7 +39,10 @@
          <h3>초음파 센서를 이용한 거리 측정(토픽:ultrasonic)</h3>
          <hr>
          <h3>cctv 촬영</h3>
-         
+         <meta http=equiv-"refresh" content-"0.5";url={%print(request.path)%}>
+         <body>
+            <img src="{{fname}}" width="640" height ="480"/>
+         </body>
          <form id="subscribe-form">
             <input type="button" onclick="subscribe('ultrasonic')" value="측정시작">
             <input type="button" onclick="unsubscribe('ultrasonic')" value="측정중단">
