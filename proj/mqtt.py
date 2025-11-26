@@ -31,7 +31,7 @@ try:
 		client.publish("ultrasonic", distance) # “ultrasonic” 토픽으로 거리 전송
 		time.sleep(1) # 1초 동안 잠자기
 		if distance < 20 : # 물체와의 거리가 10cm 이내이면
-			image = camera.take_picture(most_recent=True)
+			image = camera.take_picture()
 			if image is not None:
 				cv2.imwrite('./data/cctv.jpg', image)
 			if (red_on == 0) :
