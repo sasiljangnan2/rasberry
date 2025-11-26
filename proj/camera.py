@@ -1,4 +1,5 @@
 import cv2
+import io
 def init():
 	global camera
 	# 카메라 객체를 생성하고 촬영한 사진 크기를 640x480으로 설정
@@ -12,7 +13,7 @@ def take_picture():
 	global camera
 	size = 1
 	while size > 0: # 버퍼 내에 저장된 모든 프레임을 버린다
-		camera.grab( ) # camera.read( )로 해도 됨
+		camera.read( ) # camera.read( )로 해도 됨
 		size -= 1
 	ret, frame = camera.read( ) # 버퍼에 있는 현재 프레임을 읽는다.
 	return frame if ret == True else None
