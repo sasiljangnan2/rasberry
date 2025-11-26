@@ -16,7 +16,6 @@ red_on = 0
 blue_on = 0
 def on_connect(client, userdata, flag, rc, prop=None):
 	client.subscribe("led") # "led" 토픽으로 구독 신청
-	client.sub
 
 def on_message(client, userdata, msg) :
 	on_off = int(msg.payload); # on_off는 0 또는 1의 정수
