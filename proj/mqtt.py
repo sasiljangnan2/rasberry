@@ -1,6 +1,7 @@
 import time
 import paho.mqtt.client as mqtt
 import circuit 
+import RPi.GPIO as GPIO
 red_on = 0
 blue_on = 0
 def on_connect(client, userdata, flag, rc, prop=None):
