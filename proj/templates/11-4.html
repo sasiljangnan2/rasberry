@@ -16,12 +16,6 @@
                 ip = (ip.split(":"))[0]; // ip = "192..."
                 document.getElementById("broker").value = ip
             });
-      </script>
-      <script type="text/javascript">
-      function reload(){
-        $("#targetDiv").load(window.location.href+"#targetDiv");
-      }
-      </script>
    </head>
    <body>
          <h3>Raspberry 제어 및 모니터링</h3>
@@ -51,11 +45,8 @@
          <canvas id="canvas" width="600" height="400"></canvas>
          <div id="messages"></div>
          <h3>cctv 촬영</h3>
-         <body>
-            <div id ="targetDiv">
-               <img src="./static/cctv.jpg" width="640" height ="480"/>
-            </div>
-            <button type="button" onclick="reload()">새로고침</button>
-         </body>
+         <form action="/cctv">
+            <input type="butten" value="CCTV 확인"> 
+         </form>  
    </body>
    </html>
