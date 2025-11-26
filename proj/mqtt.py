@@ -13,6 +13,7 @@ camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 buffer_size = 1
 camera.set(cv2.CAP_PROP_BUFFERSIZE, buffer_size)
 def capture():
+	global camera
 	for i in range(buffer_size+1): 
 		ret, frame = camera.read()
 		im_bytes = cv2.imencode('.jpg', frame)[1].tobytes() # 바이트 배열로 저장
