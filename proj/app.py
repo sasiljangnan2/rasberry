@@ -4,7 +4,7 @@ import cv2
 from flask import Flask, render_template, request
 camera.init(width=640, height=240)
 # 자바스크립트 코드나 이미지 파일 등에 대해
-# 브라우저에게 캐시에 저장한 파일을 사용하지 않도록 지시
+# 브라우저에게 캐시에 저장한 파일을 사용하지 않도록 지시.
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT']=0
 
