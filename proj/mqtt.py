@@ -1,7 +1,6 @@
 import time
 import paho.mqtt.client as mqtt
 import circuit 
-import cv2
 red_on = 0
 blue_on = 0
 def on_connect(client, userdata, flag, rc, prop=None):
@@ -20,25 +19,29 @@ client.on_message = on_message
 client.connect(ip, 1883) # 브로커에 연결
 client.loop_start() # 메시지 루프를 실행하는 스레드 생성
 
-
-
 # 도착하는 메시지는 on_message() 함수에 의해 처리되어 LED를 켜거나 끄는 작업과
 # 병렬적으로 1초 단위로 초음파 센서로부터 거리를 읽어 전송하는 무한 루프 실행
-while True:
-	distance = circuit.measure_distance() # 초음파 센서로부터 거리 읽기
-	client.publish("ultrasonic", distance) # “ultrasonic” 토픽으로 거리 전송
-	time.sleep(1) # 1초 동안 잠자기
-	if distance < 20 : # 물체와의 거리가 10cm 이내이면
-		if (red_on == 0) :
-			circuit.ledred_on()
-			red_on = 1
-			blue_on = 0
-		elif (blue_on == 0):
-			circuit.ledblue_on()
-			red_on = 0
-			blue_on = 1
-
-	else:
-		circuit.led_off()
+try:
+	while True:
+		distance = circuit.measure_distance() # 초음파 센서로부터 거리 읽기
+		client.publish("ultrasonic", distance) # “ultrasonic” 토픽으로 거리 전송
+		time.sleep(1) # 1초 동안 잠자기
+		if distance < 20 : # 물체와의 거리가 10cm 이내이면
+			circuit.camera()
+			if (red_on == 0) :
+				circuit.ledred_on()
+				red_on = 1
+				blue_on = 0
+			elif (blue_on == 0):
+				circuit.ledblue_on()
+				red_on = 0
+				blue_on = 1
+		else:
+			circuit.led_off()
+except KeyboardInterrupt:
+	print("Ctrl+C 종료")
+finally:
+	print("cleanup")
+	GPIO.cleanup()
 client.loop_stop() # 메시지 루프를 실행하는 스레드 종료
 client.disconnect()
