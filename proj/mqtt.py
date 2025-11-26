@@ -11,7 +11,7 @@ camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 # 프레임을 임시 저장할 버퍼 개수를 1로 설정
 buffer_size = 1
 camera.set(cv2.CAP_PROP_BUFFERSIZE, buffer_size)'''
-##camera.init(width=640, height=480)
+camera.init(width=640, height=480)
 red_on = 0
 blue_on = 0
 def on_connect(client, userdata, flag, rc, prop=None):
@@ -34,25 +34,25 @@ client.loop_start() # 메시지 루프를 실행하는 스레드 생성
 # 병렬적으로 1초 단위로 초음파 센서로부터 거리를 읽어 전송하는 무한 루프 실행
 try:
 	while True:
+		image = camera.take_picture(most_recent=True)
+		if image is not None:
+			cv2.imwrite('./static/cctv.jpg', image)
 		distance = circuit.measure_distance() # 초음파 센서로부터 거리 읽기
 		client.publish("ultrasonic", distance) # “ultrasonic” 토픽으로 거리 전송
 		time.sleep(1) # 1초 동안 잠자기
 		if distance < 20 : # 물체와의 거리가 10cm 이내이면
-			'''image = camera.take_picture(most_recent=True)
-			if image is not None:
-				cv2.imwrite('./static/cctv.jpg', image)'''
-			if (red_on == 0) :
+			if (red_on == 0):
 				circuit.ledred_on()
 				red_on = 1
 				blue_on = 0
-			elif (blue_on == 0):
+			
 				circuit.ledblue_on()
 				red_on = 0
-				blue_on = 1##
+				blue_on = 1
 		else:
 			circuit.led_off()
 except KeyboardInterrupt:
-	print("Ctrl+C 종료")
+    print("종료")
 finally:
 	print("cleanup")
 	GPIO.cleanup()
