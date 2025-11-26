@@ -4,7 +4,7 @@ import circuit
 import RPi.GPIO as GPIO
 
 import cv2
-
+global camera
 # 카메라 객체를 생성하고 촬영한 사진 크기를 640x480으로 설정
 camera = cv2.VideoCapture(0, cv2.CAP_V4L)
 camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
