@@ -10,7 +10,7 @@ def init():
 	camera.set(cv2.CAP_PROP_BUFFERSIZE, buffer_size)
 def take_picture(most_recent=False):
 	global camera
-	len = 0 if most_recent == False else camera.get(cv2.CAP_PROP_BUFFERSIZE)
+	len = 0
 	while(len > 0):
 		camera.grab()
 		len -=1
