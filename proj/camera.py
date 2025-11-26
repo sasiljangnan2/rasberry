@@ -10,7 +10,7 @@ def init():
 	camera.set(cv2.CAP_PROP_BUFFERSIZE, buffer_size)
 def take_picture():
 	global camera
-	size = camera.get(cv2.CAP_PROP_BUFFERSIZE) # 버퍼 크기를 읽어온다
+	size = 1
 	while size > 0: # 버퍼 내에 저장된 모든 프레임을 버린다
 		camera.grab( ) # camera.read( )로 해도 됨
 		size -= 1
