@@ -50,6 +50,10 @@ try:
 			circuit.repert_led()
 		else:
 			circuit.led_off()
+		if (circuit.controlAlert() == 1):
+			circuit.repert_led()
+		else :
+			circuit.led_off()
 except KeyboardInterrupt:
     print("종료")
 finally:
