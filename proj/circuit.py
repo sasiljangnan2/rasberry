@@ -4,16 +4,17 @@ import io
 
 global red_on 
 red_on = 0
-
 global blue_on
 blue_on = 0
+global is_Alert
+is_Alert = 0
 # LED를 켜고 끄는 함수
 def controlAlert(on_off): # led 번호의 핀에 on_off(0/1) 값 출력하는 함수
-	
-	if (on_off == 0):
-		repert_led()
-	else :
-		led_off()
+    global is_Alert
+    is_Alert = on_off
+def doAlert():
+    global is_Alert
+    return is_Alert
 # pin에 연결된 LED에 value(0/1) 값을 출력하여 LED를 켜거나 끄는 함수
 def ledred_on():
 	global red_on, blue_on

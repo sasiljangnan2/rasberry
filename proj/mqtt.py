@@ -50,7 +50,7 @@ try:
 			circuit.repert_led()
 		else:
 			circuit.led_off()
-		if (circuit.controlAlert() == 1):
+		if (circuit.doAlert() == 1):
 			circuit.repert_led()
 		else :
 			circuit.led_off()
