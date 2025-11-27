@@ -9,6 +9,7 @@ camera.init(width=640, height=480)
 red_on = 0
 blue_on = 0
 global on_off
+on_off = 1
 def on_connect(client, userdata, flag, rc, prop=None):
 	client.subscribe("alert") # "alert" 토픽으로 구독 신청
 
