@@ -8,15 +8,13 @@ import camera
 camera.init(width=640, height=480)
 red_on = 0
 blue_on = 0
-global on_off
 on_off = 1
 def on_connect(client, userdata, flag, rc, prop=None):
 	client.subscribe("alert") # "alert" 토픽으로 구독 신청
 
 def on_message(client, userdata, msg) :
-    global on_off
     on_off = int(msg.payload); # on_off는 0 또는 1의 정수
-
+    circuit.controlAlert(on_off)
 ip = "localhost" # 현재 브로커는 이 컴퓨터에 설치되어 있음
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 client.on_connect = on_connect
@@ -43,7 +41,7 @@ try:
 			file.write(data) # 파일에 저장
 			file.close()
 			circuit.repert_led()
-		elif on_off == 0:
+		elif circuit.doAlert() == 0:
 			circuit.repert_led()
 		else:
 			circuit.led_off()
