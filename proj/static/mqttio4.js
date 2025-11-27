@@ -82,7 +82,7 @@ function disconnect() {
 
 	// 켜진 led 끄기
 	if(document.getElementById("ledOn").checked == true) {
-		client.send('led', "0", 0, false); // led를 끄도록 메시지 전송
+		client.send('alert', "0", 0, false); // led를 끄도록 메시지 전송
 		document.getElementById("ledOff").checked = true;	
 	}
 	client.disconnect(); // 브로커와 접속 해제

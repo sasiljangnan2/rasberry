@@ -19,7 +19,7 @@
       </script>
    </head>
    <body>
-         <h3>Raspberry 제어 및 모니터링</h3>
+         <h3>CCTV 제어 및 모니터링</h3>
          <hr>
          <form id="connection-form">
             <b>브로커 IP:</b>
@@ -29,14 +29,14 @@
             <input type="button" onclick="disconnect()" value="Disconnect">
          </form>
          <hr>
-         <h3>Led 제어(토픽:led)</h3>
+         <h3>경보 울리기</h3>
          <hr>
          <form id="LED-control-form">
-            <label>on <input type="radio" id="ledOn" name="led" value="1" onclick="return publish('led', this.value)"></label>
-            <label>off <input type="radio" id="ledOff" name="led" value="0" checked onclick="return publish('led', this.value)"><br><br></label>
+            <label>on <input type="radio" id="alertOn" name="led" value="1" onclick="return publish('led', this.value)"></label>
+            <label>off <input type="radio" id="alertOff" name="led" value="0" checked onclick="return publish('led', this.value)"><br><br></label>
          </form>
          <hr>
-         <h3>초음파 센서를 이용한 거리 측정(토픽:ultrasonic)</h3>
+         <h3>실시간 거리 인식</h3>
          <hr>
          <form id="subscribe-form">
             <input type="button" onclick="subscribe('ultrasonic')" value="측정시작">
@@ -45,7 +45,7 @@
          <button id="hideshow" onclick="hideshow()">Hide/Show Chart</button>	
          <canvas id="canvas" width="600" height="400"></canvas>
          <div id="messages"></div>
-         <h3>cctv 촬영</h3>
+         <h3>CCTV 촬영</h3>
          <form action="/cctv">
             <input type="submit" value="CCTV 확인"> 
          </form> 

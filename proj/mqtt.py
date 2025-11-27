@@ -15,11 +15,11 @@ camera.init(width=640, height=480)
 red_on = 0
 blue_on = 0
 def on_connect(client, userdata, flag, rc, prop=None):
-	client.subscribe("led") # "led" 토픽으로 구독 신청
+	client.subscribe("alert") # "alert" 토픽으로 구독 신청
 
 def on_message(client, userdata, msg) :
 	on_off = int(msg.payload); # on_off는 0 또는 1의 정수
-	circuit.controlLED(on_off) # LED를 켜거나 끔
+	circuit.controlAlert(on_off) # LED를 켜거나 끔
 
 ip = "localhost" # 현재 브로커는 이 컴퓨터에 설치되어 있음
 
@@ -47,14 +47,7 @@ try:
 			cv2.imwrite('./static/image_%s.jpg'% nowtime, image) # data에 image+날짜 이름으로 저장 
 			file.write(data) # 파일에 저장
 			file.close()
-			if (red_on == 0):
-				circuit.ledred_on()
-				red_on = 1
-				blue_on = 0
-			elif (blue_on == 0):
-				circuit.ledblue_on()
-				red_on = 0
-				blue_on = 1
+			circuit.repert_led()
 		else:
 			circuit.led_off()
 except KeyboardInterrupt:
