@@ -47,8 +47,6 @@ try:
 			cv2.imwrite('./data/image_%s.jpg'% nowtime, image) # data에 image+날짜 이름으로 저장 
 			file.write(data) # 파일에 저장
 			file.close()
-			im_bytes = cv2.imencode('.jpg', image)[1].tobytes() # 바이트 배열로 저장
-			client.publish("jpeg", im_bytes, qos = 0) # 이미지 전송
 			if (red_on == 0):
 				circuit.ledred_on()
 				red_on = 1
