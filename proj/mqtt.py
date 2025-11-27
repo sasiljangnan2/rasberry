@@ -4,22 +4,18 @@ import circuit
 import RPi.GPIO as GPIO
 import cv2
 import camera
-'''
-camera = cv2.VideoCapture(0, cv2.CAP_V4L)
-camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
-# 프레임을 임시 저장할 버퍼 개수를 1로 설정
-buffer_size = 1
-camera.set(cv2.CAP_PROP_BUFFERSIZE, buffer_size)'''
+
 camera.init(width=640, height=480)
 red_on = 0
 blue_on = 0
+global on_off
 def on_connect(client, userdata, flag, rc, prop=None):
 	client.subscribe("alert") # "alert" 토픽으로 구독 신청
 
 def on_message(client, userdata, msg) :
-	on_off = int(msg.payload); # on_off는 0 또는 1의 정수
-	circuit.controlAlert(on_off) # LED를 켜거나 끔
+    global on_off
+    on_off = int(msg.payload); # on_off는 0 또는 1의 정수
+    circuit.controlAlert(on_off) # LED를 켜거나 끔
 
 ip = "localhost" # 현재 브로커는 이 컴퓨터에 설치되어 있음
 
@@ -48,6 +44,8 @@ try:
 			file.write(data) # 파일에 저장
 			file.close()
 			circuit.repert_led()
+		elif on_off == 0:
+			circuit.repert_led()
 		else:
 			circuit.led_off()
 except KeyboardInterrupt:
@@ -55,5 +53,6 @@ except KeyboardInterrupt:
 finally:
 	print("cleanup")
 	GPIO.cleanup()
+	camera.final()
 client.loop_stop() # 메시지 루프를 실행하는 스레드 종료
 client.disconnect()

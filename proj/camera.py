@@ -21,4 +21,4 @@ def take_picture(most_recent=False):
 def final():
 	if camera != None:
 		camera.release()
-camera = None
+	camera = None
