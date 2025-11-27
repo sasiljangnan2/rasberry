@@ -11,5 +11,14 @@ def index():
 @app.route('/cctv')
 def cctv():
     return render_template('cctv.html')
+@app.route('/view', methods=['GET']) # 전화번호 전체 보기
+def view():
+    alert = {} # 빈 딕셔너리 생성
+    file = open('./data/alert.txt', 'r') # 읽기 모드로 열기
+    for line in file.readlines(): # 한 줄씩 읽기
+        data = line.strip().split(',') # , 기준으로 나누어서 data[0], data[1]에 저장
+        alert[data[0]] = data[1] # 딕셔너리에 이름, 전화번호 저장
+    file.close()
+    return render_template('view.html', alert=alert)
 if __name__ == "__main__":
 	app.run(host='0.0.0.0', port=8080)

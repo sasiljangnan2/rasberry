@@ -41,6 +41,10 @@ try:
 		client.publish("ultrasonic", distance) # “ultrasonic” 토픽으로 거리 전송
 		time.sleep(0.5) # 1초 동안 잠자기
 		if distance < 20 : # 물체와의 거리가 10cm 이내이면
+			file = open('./data/alert.txt', 'a') # 추가 모드로 열기
+			data = "%s,%s\n" % (time.strftime('%Y-%m-%d %H:%M:%S'), distance) # data에 name,tel 형식으로 저장
+			file.write(data) # 파일에 저장
+			file.close()
 			im_bytes = cv2.imencode('.jpg', image)[1].tobytes() # 바이트 배열로 저장
 			client.publish("jpeg", im_bytes, qos = 0) # 이미지 전송
 			if (red_on == 0):

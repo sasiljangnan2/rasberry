@@ -89,3 +89,4 @@ function disconnect() {
 	document.getElementById("messages").innerHTML += '<span>연결종료</span><br/>';
 	connectionFlag = false; // 연결 되지 않은 상태로 설정
 }
+

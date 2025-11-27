@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>침입 리스트 관리</title>
+<link href="../static/mystyle.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<h3>인식된 침입 모두 출력</h3>
+<hr>
+<table>
+<thead>
+<tr><td>날짜</td><td>거리</td></tr>
+</thead>
+<tbody>
+{% for date, dis in alert.items() %}
+<tr>
+    <td>{% print(date) %}</td><td>{% print(dis) %}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</br></br>
+<form action="/" method="get">
+    <input type="submit" value="처음으로 돌아가기">
+</form>
+<p>
+<hr>
+</body>
+</html>
