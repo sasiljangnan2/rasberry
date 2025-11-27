@@ -16,9 +16,8 @@
 <tbody>
 {% for date, dis in alert.items() %}
 <tr>         
-    {% set safe = date|replace('-', '')|replace(' ', '_')|replace(':', '') %} 
     <td>
-        <img id="imagedate_{{ loop.index }}" src="./data/image_{{ safe }}.jpg" width="640" height="480" alt="image_{{ safe }}" />
+        <img id="imagedate_{{ loop.index }}" src="./data/image_{{ date }}.jpg" width="640" height="480" alt="image_{{ safe }}" />
     </td>
     <td>{% print(name) %}</td><td>{% print(tel) %}</td>
 </tr>
