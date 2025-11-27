@@ -40,7 +40,7 @@ try:
 		distance = circuit.measure_distance() # 초음파 센서로부터 거리 읽기
 		client.publish("ultrasonic", distance) # “ultrasonic” 토픽으로 거리 전송
 		time.sleep(0.5) # 1초 동안 잠자기
-		if distance < 20 or circuit.doAlert(): # 물체와의 거리가 10cm 이내이면
+		if distance < 20: # 물체와의 거리가 10cm 이내이면
 			nowtime = time.strftime('%Y-%m-%d%H:%M:%S') # 현재 시간 저장
 			file = open('./data/alert.txt', 'a') # 추가 모드로 열기
 			data = "%s,%s\n" % (nowtime, distance) # data에 date,dis 형식으로 저장
