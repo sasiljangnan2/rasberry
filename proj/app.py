@@ -7,7 +7,7 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT']=0
 
 @app.route('/')
 def index():
-	return render_template('alert.html')
+	return render_template('alertcctv.html')
 @app.route('/cctv')
 def cctv():
     return render_template('cctv.html')
