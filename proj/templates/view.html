@@ -16,11 +16,11 @@
 <tbody>
 {% for date, dis in alert.items() %}
 <tr>         
-    <td>
-        <img id="imagedate_{{ loop.index }}" src="./data/image_{{ date }}.jpg" width="640" height="480" alt="image_{{ safe }}" />
-    </td>
     <td>{% print(name) %}</td><td>{% print(tel) %}</td>
 </tr>
+ <td>
+    <img id="imagedate_{{ loop.index }}" src="./data/image_{{ date }}.jpg" width="640" height="480" alt="image_{{ date }}" />
+</td>
 {% endfor %}
 </tbody>
 </table>
