@@ -7,7 +7,7 @@ red_on = 0
 global blue_on
 blue_on = 0
 global is_Alert
-is_Alert = 0
+is_Alert = 1
 # LED를 켜고 끄는 함수
 def controlAlert(on_off): # led 번호의 핀에 on_off(0/1) 값 출력하는 함수
 	global is_Alert
