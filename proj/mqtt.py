@@ -15,10 +15,8 @@ def on_connect(client, userdata, flag, rc, prop=None):
 def on_message(client, userdata, msg) :
     global on_off
     on_off = int(msg.payload); # on_off는 0 또는 1의 정수
-    circuit.controlAlert(on_off) # LED를 켜거나 끔
 
 ip = "localhost" # 현재 브로커는 이 컴퓨터에 설치되어 있음
-
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 client.on_connect = on_connect
 client.on_message = on_message
@@ -53,6 +51,5 @@ except KeyboardInterrupt:
 finally:
 	print("cleanup")
 	GPIO.cleanup()
-	camera.final()
 client.loop_stop() # 메시지 루프를 실행하는 스레드 종료
 client.disconnect()
