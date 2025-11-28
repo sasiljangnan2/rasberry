@@ -47,7 +47,6 @@ function init() { // chart.data.labels의 크기를 LABEL_SIZE로 만들고 0~19
 		chart.data.labels[i] = i;
 		stack++;
 	}
-	
 	chart.update();
 }
 
