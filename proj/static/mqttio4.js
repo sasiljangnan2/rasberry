@@ -51,6 +51,10 @@ function publish(topic, msg) {
 	client.send(topic, msg, 0, false);
 	return true;
 }
+function publishid(topic, id)
+{
+	publish(topic, document.getElementById(id));
+}
 function unsubscribe(topic) {
 	if(connectionFlag != true) return; // 연결되지 않은 경우
 	// 구독 신청 취소를 <div> 영역에 출력

@@ -40,7 +40,7 @@
          <hr>
          <form id="Alert_text"> 
             <label>경고문 입력 <input type="text" id="alert" ></label>
-           <input type="button" value="document.getElementById('alert')" onclick="return publish('textAlert', this.value)">
+           <input type="button" value="저장" onclick="return publishid('textAlert', "alert")">
          </form>
          <hr>
          <h3>실시간 거리 인식</h3>
@@ -64,20 +64,5 @@
             <input type="submit" value="전체 출력">
          </form>
          <hr> 
-            <script>
-               // Alert form submit handler: prevent native submit and publish via MQTT
-               function onSaveAlert(e) {
-                  e.preventDefault();
-                  var el = document.getElementById('alert');
-                  var txt = el ? el.value : '';
-                  // call publish(topic, payload). mqttio4.js should expose publish()
-                  try {
-                     publish('textAlert', txt);
-                  } catch (err) {
-                     console.error('publish failed', err);
-                  }
-                  return false;
-               }
-            </script>
    </body>
    </html>
