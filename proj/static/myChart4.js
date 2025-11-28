@@ -39,18 +39,16 @@ let tick = 0; // 도착한 데이터의 개수임, tick의 범위는 0에서 99�
 function drawChart() {
 	ctx = document.getElementById('canvas').getContext('2d');
 	chart = new Chart(ctx, config);
+	chart.update();
 } 
 
 function init() { // chart.data.labels의 크기를 LABEL_SIZE로 만들고 0~19까지 레이블 붙이기
-	for(let i=0; i<LABEL_SIZE; i++) {
-		chart.data.labels[i] = i;
-	}
+		chart.data.labels[0] = 0;
 	chart.update();
 }
 
 function addChartData(value) {
 	let n = chart.data.datasets[0].data.length; // 현재 데이터의 개수 
-	chart.data.label[tick] = tick;
 	if(n < LABEL_SIZE) // 현재 데이터 개수가 LABEL_SIZE보다 작은 경우
 		chart.data.datasets[0].data.push(value);
 	else { // 현재 데이터 개수가 LABEL_SIZE를 넘어서는 경우
@@ -62,7 +60,8 @@ function addChartData(value) {
 		chart.data.labels.shift(); // labels[]의 맨 앞에 있는 값 제거
 	}
 	tick++; // 도착한 데이터의 개수 증가
-	tick %= 100; // tick의 범위는 0에서 99까지만. 100보다 크면 다시 0부터 시작
+	chart.data.label[tick] = tick;
+	
 	chart.update();
 }
 
