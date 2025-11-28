@@ -32,15 +32,15 @@
          <h3>경보 울리기</h3>
          <hr>
          <form id="LED-control-form">
-            <label>on <input type="radio" id="alertOn" name="led" value="1" onclick="return publish('textAlert', this.value)"></label>
-            <label>off <input type="radio" id="alertOff" name="led" value="0" checked onclick="return publish('textAlert', this.value)"><br><br></label>
+            <label>on <input type="radio" id="alertOn" name="led" value="1" onclick="return publish('doAlert', this.value)"></label>
+            <label>off <input type="radio" id="alertOff" name="led" value="0" checked onclick="return publish('doAlert', this.value)"><br><br></label>
          </form>
          <hr>
           <h3>경고문 작성하기</h3>
          <hr>
          <form id="Alert_text"> 
             <label>경고문 입력 <input type="text" id="al ert" ></label>
-           <input type="button" value="저장" onclick="return publish('textAlert', document.getElementById('alert').value)">
+           <input type="button" value="저장" onclick="return publish('textAlert', document.getElementById('alert')">
          </form>
          <hr>
          <h3>실시간 거리 인식</h3>
