@@ -6,9 +6,10 @@ import circuit
 def on_connect(client, userdata, flag, rc, prop=None):
 	client.subscribe("textAlert") # "textalert" 토픽으로 구독 신청
 
-def on_message(client, userdata, msg) :
-	circuit.savetxtAlert(msg.payload) # 받은 메시지 txt
-
+def on_message(client, userdata, msg) : # 받은 메시지 txt
+	file = open('./data/text.txt', 'w') # 추가 모드로 열기
+	file.write(str(msg.payload))
+	file.close()
 ip = "localhost" 
 
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
