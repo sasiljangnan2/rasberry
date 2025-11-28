@@ -43,10 +43,11 @@ function drawChart() {
 } 
 
 function init() { // chart.data.labels의 크기를 LABEL_SIZE로 만들고 0~19까지 레이블 붙이기
-	for(let i=stack; i< stack + LABEL_SIZE; i++) {
+	for(let i=stack; i < LABEL_SIZE; i++) {
 		chart.data.labels[i] = i;
 		stack++;
 	}
+	LABEL_SIZE += stack
 	chart.update();
 }
 
