@@ -4,7 +4,7 @@ import RPi.GPIO as GPIO
 import circuit
 
 def on_connect(client, userdata, flag, rc, prop=None):
-	client.subscribe("textalert") # "textalert" 토픽으로 구독 신청
+	client.subscribe("textAlert") # "textalert" 토픽으로 구독 신청
 
 def on_message(client, userdata, msg) :
 	circuit.savetxtAlert(msg.paylord) # 받은 메시지 txt
