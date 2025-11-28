@@ -8,7 +8,7 @@ import camera
 camera.init(width=640, height=480)
 
 def on_connect(client, userdata, flag, rc, prop=None):
-	client.subscribe("doAlert") # "alert" 토픽으로 구독 신청
+	client.subscribe("textAlert") # "doAlert" 토픽으로 구독 신청
 
 def on_message(client, userdata, msg) :
     on_off = int(msg.payload); # on_off는 0 또는 1의 정수
