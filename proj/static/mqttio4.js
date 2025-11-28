@@ -53,7 +53,7 @@ function publish(topic, msg) {
 }
 function publishid(topic, id)
 {
-	publish(topic, document.getElementById(id));
+	return publish(topic, document.getElementById(id));
 }
 function unsubscribe(topic) {
 	if(connectionFlag != true) return; // 연결되지 않은 경우
