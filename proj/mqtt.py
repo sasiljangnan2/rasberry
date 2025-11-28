@@ -6,9 +6,7 @@ import cv2
 import camera
 
 camera.init(width=640, height=480)
-red_on = 0
-blue_on = 0
-on_off = 1
+
 def on_connect(client, userdata, flag, rc, prop=None):
 	client.subscribe("doAlert") # "alert" 토픽으로 구독 신청
 
