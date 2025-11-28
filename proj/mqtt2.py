@@ -7,7 +7,7 @@ def on_connect(client, userdata, flag, rc, prop=None):
 	client.subscribe("textAlert") # "textalert" 토픽으로 구독 신청
 
 def on_message(client, userdata, msg) :
-	circuit.savetxtAlert(msg.paylord) # 받은 메시지 txt
+	circuit.savetxtAlert(msg.payload) # 받은 메시지 txt
 
 ip = "localhost" 
 
