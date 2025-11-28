@@ -20,12 +20,5 @@ def view():
         alertdata[data[0]] = data[1] # 딕셔너리에 이름, 전화번호 저장
     file.close()
     return render_template('view.html', alertdata=alertdata)
-@app.route('/store/', methods=['GET']) # 경고문 저장
-def store():
-    txt = request.args.get('alert') 
-    file = open('./data/text.txt', 'w') 
-    file.write(txt)
-    file.close()
-    return render_template('alertcctv.html') 
 if __name__ == "__main__":
 	app.run(host='0.0.0.0', port=8080)

@@ -14,6 +14,10 @@ def controlAlert(on_off): # led 번호의 핀에 on_off(0/1) 값 출력하는 �
 def doAlert():
     global is_Alert
     return is_Alert
+def savetxtAlert(msg):
+    file = open('./static/text.txt', 'w') # 추가 모드로 열기
+    file.write(msg)
+    file.close()
 # pin에 연결된 LED에 value(0/1) 값을 출력하여 LED를 켜거나 끄는 함수
 def ledred_on():
 	global red_on, blue_on
