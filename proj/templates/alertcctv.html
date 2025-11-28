@@ -39,8 +39,8 @@
           <h3>경고문 작성하기</h3>
          <hr>
          <form id="Alert_text"> 
-            <label>경고문 입력 <input type="text" id="alert" value="text"></label>
-           <input type="submit" value="저장" onclick="return publish('textAlert', text)">
+            <label>경고문 입력 <input type="text" id="alert" ></label>
+           <input type="submit" value="저장" onclick="return publish('textAlert', this.value)">
          </form>
          <hr>
          <h3>실시간 거리 인식</h3>
