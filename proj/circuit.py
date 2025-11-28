@@ -15,7 +15,7 @@ def doAlert():
     global is_Alert
     return is_Alert
 def savetxtAlert(msg):
-    file = open('./data/text.txt', 'a') # 추가 모드로 열기
+    file = open('./data/text.txt', 'w') # 추가 모드로 열기
     file.write(msg)
     file.close()
 # pin에 연결된 LED에 value(0/1) 값을 출력하여 LED를 켜거나 끄는 함수

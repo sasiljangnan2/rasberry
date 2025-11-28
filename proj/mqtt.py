@@ -41,7 +41,7 @@ try:
 			file.write(data) # 파일에 저장
 			file.close()
 			circuit.repert_led()
-		elif circuit.doAlert() == 0:
+		elif circuit.doAlert() == 1:
 			circuit.repert_led()
 		else:
 			circuit.led_off()
