@@ -47,7 +47,7 @@ function init() { // chart.data.labels의 크기를 LABEL_SIZE로 만들고 0~19
 		chart.data.labels[i] = i;
 		stack++;
 	}
-	LABEL_SIZE += stack
+	
 	chart.update();
 }
 
@@ -56,6 +56,7 @@ function addChartData(value) {
 	if(n < LABEL_SIZE) // 현재 데이터 개수가 LABEL_SIZE보다 작은 경우
 		chart.data.datasets[0].data.push(value);
 	else { // 현재 데이터 개수가 LABEL_SIZE를 넘어서는 경우
+		LABEL_SIZE += stack
 		init()
 	}
 	tick++; // 도착한 데이터의 개수 증가
