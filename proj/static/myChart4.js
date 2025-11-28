@@ -55,7 +55,7 @@ function addChartData(value) {
 	if(n < LABEL_SIZE) // 현재 데이터 개수가 LABEL_SIZE보다 작은 경우
 		chart.data.datasets[0].data.push(value);
 	else { // 현재 데이터 개수가 LABEL_SIZE를 넘어서는 경우
-		LABEL_SIZE += stack
+		LABEL_SIZE += 20 // 추가로 20개만큼의 레이블 붙이기
 		init()
 	}
 	tick++; // 도착한 데이터의 개수 증가
