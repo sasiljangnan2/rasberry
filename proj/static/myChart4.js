@@ -33,17 +33,20 @@ let config = {
 		}
 	}
 };
-let LABEL_SIZE = 3600; // 차트에 그려지는 데이터의 개수 
+let LABEL_SIZE = 20; // 차트에 그려지는 데이터의 개수 
 let tick = 0; // 도착한 데이터의 개수임, tick의 범위는 0에서 99까지만 
-
+let stack = 0;
 function drawChart() {
 	ctx = document.getElementById('canvas').getContext('2d');
 	chart = new Chart(ctx, config);
-	chart.update();
+	init();
 } 
 
 function init() { // chart.data.labels의 크기를 LABEL_SIZE로 만들고 0~19까지 레이블 붙이기
-		chart.data.labels[0] = 0;
+	for(let i=stack; i<LABEL_SIZE; i++) {
+		chart.data.labels[i] = i;
+		stack++;
+	}
 	chart.update();
 }
 
@@ -52,16 +55,9 @@ function addChartData(value) {
 	if(n < LABEL_SIZE) // 현재 데이터 개수가 LABEL_SIZE보다 작은 경우
 		chart.data.datasets[0].data.push(value);
 	else { // 현재 데이터 개수가 LABEL_SIZE를 넘어서는 경우
-		// 새 데이터 value 삽입
-		chart.data.datasets[0].data.push(value); // value를 data[]의 맨 끝에 추가
-		chart.data.datasets[0].data.shift(); // data[]의 맨 앞에 있는 데이터 제거
-		// 레이블 삽입
-		chart.data.labels.push(tick); // tick(인덱스)을 labels[]의 맨 끝에 추가
-		chart.data.labels.shift(); // labels[]의 맨 앞에 있는 값 제거
+		init()
 	}
 	tick++; // 도착한 데이터의 개수 증가
-	chart.data.label[tick] = tick;
-	
 	chart.update();
 }
 
