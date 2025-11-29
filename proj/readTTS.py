@@ -15,6 +15,6 @@ def speak(text):
 
      filename='alerttext.mp3'
 
-     tts.save('/data/%s.mp3' % filename)
+     tts.save('/data/%s' % filename)
 
      playsound.playsound('/data/%s.mp3' % filename)
