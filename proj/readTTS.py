@@ -6,7 +6,7 @@ import os
 
 import time
 
-import playsound
+import vlc
 
 
 def speak(text):
@@ -17,4 +17,6 @@ def speak(text):
 
      tts.save('./data/%s.mp3' % filename)
 
-     playsound.playsound('./data/%s.mp3' % filename)
+     p = vlc.MediaPlayer('./data/%s.mp3' % filename)
+     
+     p.play()
