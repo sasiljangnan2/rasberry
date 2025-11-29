@@ -1,6 +1,7 @@
 import cv2
 camera = None
-def init(camera_id = 0, width=640, height=480,buffer_size=1):
+
+def init(camera_id = 0, width=640, height=480,buffer_size=1): # 카메라 초기화 함수
 	global camera
 	# 카메라 객체를 생성하고 촬영한 사진 크기를 640x480으로 설정
 	camera = cv2.VideoCapture(camera_id, cv2.CAP_V4L)
@@ -9,7 +10,8 @@ def init(camera_id = 0, width=640, height=480,buffer_size=1):
 	# 프레임을 임시 저장할 버퍼 개수를 1로 설정
 	buffer_size = 1
 	camera.set(cv2.CAP_PROP_BUFFERSIZE, buffer_size)
-def take_picture(most_recent=False):
+ 
+def take_picture(most_recent=False): # 카메라 촬영 함수
 	global camera
 	len = 0 if most_recent == False else camera.get(cv2.CAP_PROP_BUFFERSIZE)
 	while len > 0: # 버퍼 내에 저장된 모든 프레임을 버린다

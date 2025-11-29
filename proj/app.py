@@ -12,7 +12,7 @@ def index():
 def cctv():
     return render_template('cctv.html')
 @app.route('/view', methods=['GET']) # 전화번호 전체 보기
-def view():
+def view(): # 
     alertdata = {} # 빈 딕셔너리 생성
     file = open('./data/alert.txt', 'r') # 읽기 모드로 열기
     for line in file.readlines(): # 한 줄씩 읽기

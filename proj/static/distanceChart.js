@@ -35,7 +35,7 @@ let config = {
 };
 let LABEL_SIZE = 20; // 차트에 그려지는 데이터의 개수 
 let tick = 0; // 도착한 데이터의 개수임, tick의 범위는 0에서 99까지만 
-let stack = 0;
+let stack = 0; // 데이터가 초과되었을때 더 늘려주는 변수
 function drawChart() {
 	ctx = document.getElementById('canvas').getContext('2d');
 	chart = new Chart(ctx, config);

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="UTF-8">
 <title>침입 리스트 관리</title>
 <link href="../static/mystyle.css" type="text/css" rel="stylesheet">
@@ -18,9 +17,9 @@
 <tr>         
     <td>{% print(date) %}</td><td>{% print(dis) %}</td>
 </tr>
- <td>
-    <img src="./static/image_{{ date }}.jpg" width="640" height="480" alt="image_{{ date }}" />
-</td>
+<tr>
+ <td><img src="./camera/image_{{ date }}.jpg" width="640" height="480" alt="image_{{ date }}" /></td>
+</tr>
 {% endfor %}
 </tbody>
 </table>

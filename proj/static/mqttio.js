@@ -51,7 +51,7 @@ function publish(topic, msg) {
 	client.send(topic, msg, 0, false);
 	return true;
 }
-function publishid(topic, id)
+function publishid(topic, id) //id를 활용해  publish 함수에 전달해주는 함수
 {
 	return publish(topic, document.getElementById(id).value);
 }
