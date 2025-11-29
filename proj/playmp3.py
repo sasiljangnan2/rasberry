@@ -2,6 +2,7 @@
 from gtts import gTTS
 import vlc
 global p
+p = None
 def playspeak(text):
      tts = gTTS(text=text, lang='ko')
      filename='alerttext'
