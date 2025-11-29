@@ -30,6 +30,7 @@
          </form>
          <hr>
          <h3>경보 모드</h3>
+         <p>on으로 설정 시 가까운 거리에 무언가가 인식 시 경보 발동</p>
          <hr>
          <form id="LED-control-form">
             <label>on <input type="radio" id="alertOn" name="led" value="1" onclick="return publish('doAlert', this.value)"></label>
@@ -37,6 +38,7 @@
          </form>
          <hr>
           <h3>경고문 작성하기</h3>
+          <p>CCTV가 설치돤 곳에 음성으로 경보문 전달</p>
          <hr>
          <form id="Alert_text"> 
             <label>경고문 입력 <input type="text" id="alert" ></label>
@@ -53,6 +55,7 @@
          <canvas id="canvas" width="600" height="400"></canvas>
          <div id="messages"></div>
          <h3>CCTV 촬영</h3>
+         <p>실시간으로 확인</p>
          <hr>
          <form action="/cctv">
             <input type="submit" value="CCTV 확인"> 
