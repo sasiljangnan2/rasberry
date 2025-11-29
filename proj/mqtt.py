@@ -7,7 +7,7 @@ import playmp3 as playmp3
 import cv2
 
 camera.init(width=640, height=480)
-
+playmp3.initsound('./data/alertsound.mp3')
 def on_connect(client, userdata, flag, rc, prop=None):
 	client.subscribe("doAlert") # "doalert" 토픽으로 구독 신청
 
@@ -41,7 +41,7 @@ try:
 			file.close()
 			if circuit.doAlert() == 1: # 경보 상태라면 led 반복 점등과 경보 소리 실행
 				circuit.repert_led()
-				playmp3.playsound('./data/alertsound.mp3')
+				playmp3.playsound()
 			else :
 				circuit.led_off()
 				playmp3.stopsound()
