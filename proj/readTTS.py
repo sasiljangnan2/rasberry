@@ -13,8 +13,8 @@ def speak(text):
 
      tts = gTTS(text=text, lang='ko')
 
-     filename='alerttext.mp3'
+     filename='alerttext'
 
-     tts.save('/data/%s' % filename)
+     tts.save('/data/%s.mp3' % filename)
 
      playsound.playsound('/data/%s.mp3' % filename)
