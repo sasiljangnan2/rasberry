@@ -3,7 +3,7 @@ import paho.mqtt.client as mqtt
 import circuit 
 import RPi.GPIO as GPIO
 import camera
-import proj.playmp3 as playmp3
+import playmp3 as playmp3
 import cv2
 
 camera.init(width=640, height=480)

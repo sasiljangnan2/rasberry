@@ -1,16 +1,15 @@
-import time
 import paho.mqtt.client as mqtt
-import RPi.GPIO as GPIO
-import readTTS
+import playmp3 as playmp3
 
 def on_connect(client, userdata, flag, rc, prop=None):
 	client.subscribe("textAlert") # "textalert" 토픽으로 구독 신청
 
-def on_message(client, userdata, msg) : # 받은 메시지 txt
-    readTTS.speak(str(msg.payload,'utf-8'))
-    file = open('./data/text.txt', 'w') # 추가 모드로 열기
-    file.write(str(msg.payload,'utf-8'))
-    file.close()
+def on_message(client, userdata, msg) : # 받은 메시지를 txt로 저장하고 메시지를 tts화해 mp3로 변환 후 실행
+	string = str(msg.payload,'utf-8') # 받은 메시지 문자열로 변환
+	file = open('./data/text.txt', 'w') # 쓰기 모드로 열기
+	file.write(string)
+	playmp3.speak(string) # 메시지를 tts화해 mp3로 변환 후 실행
+	file.close()
 ip = "localhost" 
 
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
