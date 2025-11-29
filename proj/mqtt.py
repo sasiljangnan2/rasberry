@@ -36,15 +36,15 @@ try:
 			nowtime = time.strftime('%Y-%m-%d%H:%M:%S') # 현재 시간 저장
 			file = open('./data/alert.txt', 'a') # 추가 모드로 열기
 			data = "%s,%s\n" % (nowtime, distance) # data에 date,dis 형식으로 저장
-			cv2.imwrite('./camera/image_%s.jpg'% nowtime, image) # camera에 image+날짜 이름으로 저장 
+			cv2.imwrite('./static/image_%s.jpg'% nowtime, image) # camera에 image+날짜 이름으로 저장 
 			file.write(data) # 파일에 저장
 			file.close()
 			if circuit.doAlert() == 1: # 경보 상태라면 led 반복 점등과 경보 소리 실행
 				circuit.repert_led()
 				playmp3.playsound()
-			else :
-				circuit.led_off()
-				playmp3.stopsound()
+		else :
+			circuit.led_off()
+			playmp3.stopsound()
 except KeyboardInterrupt:
     print("종료")
 finally:
