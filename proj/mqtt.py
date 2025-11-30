@@ -8,6 +8,7 @@ import cv2
 
 camera.init(width=640, height=480)
 playmp3.initsound('./data/alertsound.mp3')
+isAlert = 0
 def on_connect(client, userdata, flag, rc, prop=None):
 	client.subscribe("doAlert") # "doalert" 토픽으로 구독 신청
 
@@ -15,6 +16,7 @@ def on_message(client, userdata, msg) :
     on_off = int(msg.payload); # on_off는 0 또는 1의 정수
     circuit.controlAlert(on_off)
 ip = "localhost" # 현재 브로커는 이 컴퓨터에 설치되어 있음
+
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 client.on_connect = on_connect
 client.on_message = on_message
@@ -22,6 +24,15 @@ client.on_message = on_message
 client.connect(ip, 1883) # 브로커에 연결
 client.loop_start() # 메시지 루프를 실행하는 스레드 생성
 
+def Alert(isAlert) : #경보 상태에 따라 실행되는 함수
+    if isAlert == 1:
+        circuit.repert_led()
+        playmp3.playsound()
+    else :
+        circuit.led_off()
+        playmp3.stopsound()
+    
+    
 # 도착하는 메시지는 on_message() 함수에 의해 처리되어 경보상태를 켜거나 끄는 작업과
 # 병렬적으로 1초 단위로 초음파 센서로부터 거리를 읽어 전송하는 무한 루프 실행
 try:
@@ -40,11 +51,10 @@ try:
 			file.write(data) # 파일에 저장
 			file.close()
 			if circuit.doAlert() == 1: # 경보 상태라면 led 반복 점등과 경보 소리 실행
-				circuit.repert_led()
-				playmp3.playsound()
+				isAlert = 1 
 		if circuit.doAlert() == 0 : # 경보 상태가 아니라면 
-			circuit.led_off()
-			playmp3.stopsound()
+				isAlert = 0
+		Alert(isAlert) # isAlert 상태에 따라 경보 상태를 결정
 except KeyboardInterrupt:
     print("종료")
 finally:
